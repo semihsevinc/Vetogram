@@ -1,0 +1,11 @@
+{% extends './navbar.html' %}
+{% block content %}
+<h2>Update Patient</h2>
+<form method="post">
+<div>
+  {% csrf_token %} {{ form.as_p }}
+  <input type="submit" value="Submit" />
+  <a href="{% url 'patientdelete' patient.id %}"><button style="background-color:red;" > Delete</button></a>
+</div>
+</form>
+{% endblock %}
