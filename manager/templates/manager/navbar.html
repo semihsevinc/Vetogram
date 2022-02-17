@@ -10,8 +10,10 @@
 
     td,
     th {
-      border: 1px solid #ddd;
+      border: 1px solid rgb(71, 70, 70);
       padding: 8px;
+      background-color: rgb(235, 226, 226);
+      text-align: center;
     }
 
     tr:nth-child(even) {
@@ -25,14 +27,13 @@
     th {
       padding-top: 12px;
       padding-bottom: 12px;
-      text-align: left;
-      background-color: #cef00e;
-      color: white;
+      text-align: center;
+      background-color: #312783;
+      color: #c7c6c6;
     }
     input[type="text"],
     input[type="password"],
     select {
-      width: 30%;
       padding: 12px 20px;
       margin: 8px 0;
       display: inline-block;
@@ -42,7 +43,7 @@
     }
     button,
     input[type="submit"] {
-      background-color: #cef00e;
+      background-color: #312783;
       color: white;
       padding: 14px 20px;
       margin: 8px 0;
@@ -52,13 +53,12 @@
     }
 
     input[type="submit"]:hover {
-      background-color: #748513;
+      background-color: #4431d3;
     }
 
     div {
       border-radius: 5px;
-      background-color: #f2f2f2;
-      padding: 20px;
+      background-color: #c7c6c6;
     }
   </style>
 </head>
@@ -259,7 +259,11 @@
                   class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
                   href="{% url 'login' %}"
                   style="padding: 10px 20px"
-                  >Login</a
+                  >{% if is_authenticated %}
+                  <span><a href="{% url 'logout' %}">Logout</a></span>
+                {% else %}
+                  <span><a href="{% url 'login' %}" >Login</a></span>
+                {% endif %}</a
                 >
               </li>
               <li class="u-nav-item">
@@ -306,15 +310,11 @@
         {% block content %} {% endblock %}
       </div>
     </header>
-
     <footer
       class="u-align-center u-clearfix u-footer u-grey-80 u-footer"
       id="sec-5679"
     >
       <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">
-          Sample text.&nbsp; Footer Information<br />
-        </p>
       </div>
     </footer>
     <section class="u-backlink u-clearfix u-grey-80">

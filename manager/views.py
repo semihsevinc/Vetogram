@@ -10,11 +10,11 @@ from manager.signup import SignUpForm
 from django.db.models import Q
 
 
-from .models import Owner, Patient, Appointment
-from .forms import OwnerCreateForm, OwnerUpdateForm, PatientCreateForm, PatientUpdateForm, AppointmentCreateForm, AppointmentUpdateForm
+from .models import Owner, Patient
+from .forms import OwnerCreateForm, OwnerUpdateForm, PatientCreateForm, PatientUpdateForm
 
 # Create your views here.
-@login_required
+
 def home(request):
    context = {"name": request.user}
    return render(request, 'manager/home.html', context)
@@ -27,14 +27,6 @@ class OwnerList(LoginRequiredMixin, ListView):
 class PatientList(LoginRequiredMixin, ListView):
     model = Patient
 
-class AppointmentList(LoginRequiredMixin, ListView):
-    model = Appointment
-
-# CRUD - (C)reate
-#class SignUp(CreateView):
-#   form_class = UserCreationForm
-#   success_url = reverse_lazy('login')
-#   template_name = 'registration/signup.html'
 
 class OwnerCreate(PermissionRequiredMixin, CreateView):
    permission_required = 'manager.ownercreate'
@@ -47,19 +39,10 @@ class PatientCreate(PermissionRequiredMixin, CreateView):
     model=Patient
     template_name = 'manager/patient_create_form.html'
     form_class = PatientCreateForm
-   
-
-class AppointmentCreate(LoginRequiredMixin, CreateView):
-    model=Appointment
-    template_name = 'manager/appointment_create_form.html'
-    form_class = AppointmentCreateForm
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 # CRUD - (U)pdate
-class OwnerUpdate(LoginRequiredMixin, UpdateView):
+class OwnerUpdate(PermissionRequiredMixin, UpdateView):
+   permission_required = 'manager.ownerupdate'
    model = Owner
    template_name = 'manager/owner_update_form.html'
    form_class = OwnerUpdateForm
@@ -67,31 +50,25 @@ class OwnerUpdate(LoginRequiredMixin, UpdateView):
    def save_form(self, form):
        form.save()
        pass
-class PatientUpdate(LoginRequiredMixin, UpdateView):
+class PatientUpdate(PermissionRequiredMixin, UpdateView):
+   permission_required = 'manager.patientupdate'
    model = Patient
    template_name = 'manager/patient_update_form.html'
    form_class = PatientUpdateForm
 
-class AppointmentUpdate(LoginRequiredMixin, UpdateView):
-    model = Appointment
-    template_name = 'manager/appointment_update_form.html'
-    form_class = AppointmentUpdateForm
 
 # CRUD - (D)elete
-class OwnerDelete(LoginRequiredMixin, DeleteView):
+class OwnerDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'manager.ownerdelete'
     model = Owner
     template_name = 'manager/owner_delete_form.html'
-    success_url = '/owner/update'
+    success_url = '/owner/list'
 
-class PatientDelete(LoginRequiredMixin, DeleteView):
+class PatientDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = 'manager.patientdelete'
     model = Patient
     template_name = 'manager/patient_delete_form.html'
-    success_url = '/patient/update'
-
-class AppointmentDelete(LoginRequiredMixin, DeleteView):
-    model = Appointment
-    template_name = 'manager/appointment_delete_form.html'
-    success_url = '/appointment/list'
+    success_url = '/patient/list'
 
 def signup(request):
     if request.method == 'POST':

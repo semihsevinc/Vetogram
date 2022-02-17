@@ -23,19 +23,19 @@ class Owner(models.Model):
         return self.first_name + " " + self.last_name
 
 class Patient(models.Model):
-    DOG = 'DO'
-    CAT = 'CA'
-    BIRD = 'BI'
-    REPTILE = 'RE'
-    OTHER = 'OT'
+    DOG = 'DOG'
+    CAT = 'CAT'
+    BIRD = 'BIRD'
+    FISH = 'FISH'
+    OTHER = 'OTHER'
     ANIMAL_TYPE_CHOICES = [
         (DOG, 'Dog'),
         (CAT, 'Cat'),
         (BIRD, 'Bird'),
-        (REPTILE, 'Reptile'),
+        (FISH, 'Fish'),
         (OTHER, 'Other'),
     ]
-    animal_type = models.CharField(max_length=2, choices=ANIMAL_TYPE_CHOICES, default=OTHER)
+    animal_type = models.CharField(max_length=20, choices=ANIMAL_TYPE_CHOICES, default=OTHER)
     breed = models.CharField(max_length=200)
     pet_name = models.CharField(max_length=30)
     age = models.IntegerField(default=0)
@@ -47,20 +47,3 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.pet_name + ", " + self.animal_type
-
-class Appointment(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
-    day = models.DateField(auto_now=False, auto_now_add=False)
-    time = models.TimeField(auto_now=False, auto_now_add=False)
-    user = models.ForeignKey(
-        User,
-        models.SET_NULL,
-        blank=True,
-        null=True,
-    )
-
-    def get_absolute_url(self):
-        return '/appointment/list'
-
-    def __str__(self):
-        return self.patient.__str__() + "\t" + str(self.day.month) + " " + str(self.day.day) + " " + str(self.day.year) + " " + str(self.time.hour) + " " + str(self.time.min)

@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
@@ -13,8 +12,6 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
     def clean_first_name(self):
         data = self.cleaned_data['first_name']
-
-        
         return data
 
     def clean_last_name(self):
@@ -24,7 +21,5 @@ class SignUpForm(UserCreationForm):
 
     def clean_email(self):
         data = self.cleaned_data['email']
-
-        
         return data
 
