@@ -1,1 +1,1 @@
-web: gunicorn vetogram.wsgi
+web gunicorn vetogram.wsgi:application --log-file -
