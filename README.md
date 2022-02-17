@@ -8,3 +8,12 @@ I used a class-based form because I thought it was simple to use on the frontend
 
 Quick Start
 
+Clone this repository and on cmd prompt get;
+python manage.py runserver
+
+You can access to home page without login, but to see other pages like 'Pet Owners' and 'Patients' you must be logged in.
+
+There are accounts for admin and user here, you can create a user yourself if you want.
+
+Admin-> Username: admin  Password: admintest
+User-> Username: user Password: usertest
