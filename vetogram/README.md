@@ -9,8 +9,17 @@ I used a class-based form because I thought it was simple to use on the frontend
 
 <h3>Quick Start</h3>
 
-Clone this repository and on cmd prompt get;
+```
+git clone git@github.com:semihsevinc/Vetogram.git
+
+```
+
+On root directory open console and code
+
+
+```
 python manage.py runserver
+```
 
 You can access to home page without login, but to see other pages like 'Pet Owners' and 'Patients' you must be logged in.
 
