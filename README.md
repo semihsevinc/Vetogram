@@ -7,14 +7,15 @@ While an account with admin permission can access all functions in the applicati
 There are models for Pet owners and patients in the application.
 I used a class-based form because I thought it was simple to use on the frontend.
 
-<h3>Quick Start</h3>
+# Quick Start
 
-Clone this repository and on cmd prompt get;
-python manage.py runserver
+Install using `git clone git@github.com:semihsevinc/Vetogram.git`
 
-You can access to home page without login, but to see other pages like 'Pet Owners' and 'Patients' you must be logged in.
+    python manage.py runserver
+
+You can access to home page without `login`, but to see other pages like `Pet Owners` and `Patients`, you must be logged in.
 
 There are accounts for admin and user here, you can create a user yourself if you want.
 
-<h3> Admin-> Username: admin  Password: admintest
-User-> Username: user Password: usertest</h3>
+`Admin` Username: admin  Password: admintest
+`User` Username: user Password: usertest
