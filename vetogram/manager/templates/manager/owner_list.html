@@ -3,8 +3,8 @@
 <h2>Owner List</h2>
 <form  action="{% url 'ownersearch' %}" method="get">
   {% csrf_token %}
-  <input type="text" name="q" placeholder="Search Blog">
-  <button type="submit" >Search</button>
+  <input type="text" name="q" placeholder="Search Owner">
+  <button type="submit" style="background-color:#929292">Search</button>
 </form>
 <a href="{% url 'ownercreate' %}"><button>Add Owner</button></a>
 <table id="owners">
@@ -12,7 +12,7 @@
     <th>Owner</th>
     <th>Phone</th>
     <th>Email</th>
-
+    <th> </th>
   </tr>
   {% for owner in owner_list %}
   <tr>
@@ -20,7 +20,7 @@
     <td><a href="{% url 'ownerupdate' owner.id %}">{{ owner.first_name }} {{ owner.last_name }} </a></td>
       <td>{{ owner.phone }}</td>
       <td>{{ owner.email }}</td>
-      
+      <td><a href="{% url 'ownerdelete' owner.id %}"><button style="background-color:red">Delete</button></a></td>
   </tr>
   {% endfor %}
 </table>

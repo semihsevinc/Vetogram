@@ -3,8 +3,8 @@
 <h2>Patient List</h2>
 <form  action="{% url 'patientsearch' %}" method="get">
   {% csrf_token %}
-  <input type="text" name="q" placeholder="Search">
-  <button type="submit" >Search</button>
+  <input type="text" name="q" placeholder="Search Patient">
+  <button type="submit" style="background-color:#929292" >Search</button>
 </form>
 <a href="{% url 'patientcreate' %}"><button>Add Patient</button></a>
 <table id="patients">
@@ -15,6 +15,7 @@
       <th>Age</th>
       <th>Owner</th>
       <th>Description</th>
+      <th> </th>
 
   </tr>
   {% for patient in patient_list %}
@@ -26,6 +27,7 @@
       <td>{{ patient.age }}</td>
       <td>{{ patient.owner }}</td>
       <td>{{ patient.description }}</td>
+      <td><a href="{% url 'patientdelete' patient.id %}"><button style="background-color:red">Delete</button></a></td>
       
   </tr>
   {% endfor %}
